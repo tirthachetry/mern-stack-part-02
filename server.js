@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
-const PORT =  process.env.PORT || 3000;;
+const PORT =  process.env.PORT || 3000;
 
-let Todo = require('./todo.model.js');
+
+let Todo = require('./todo.model');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -42,12 +43,14 @@ todoRoutes.route('/getTodoByCategory/:category').get(function(req, res) {
     });
 });
 
+
 todoRoutes.route('/add').post(function(req, res) {
+    console.log(req);
     let todo = new Todo(req.body);
-    console.log(todo+"adding");
+    //console.log(todo+"adding");
     todo.save()
         .then(todo => {
-            console.log(todo);
+            //console.log(todo);
             res.status(200).json({'todo': 'todo added successfully'});
         })
         .catch(err => {
