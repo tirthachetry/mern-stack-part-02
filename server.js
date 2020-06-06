@@ -45,7 +45,7 @@ todoRoutes.route('/getTodoByCategory/:category').get(function(req, res) {
 
 
 todoRoutes.route('/add').post(function(req, res) {
-    console.log(req);
+    console.log(req.body);
     let todo = new Todo(req.body);
     //console.log(todo+"adding");
     todo.save()
