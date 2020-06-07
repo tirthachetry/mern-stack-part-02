@@ -43,7 +43,7 @@ todoRoutes.route('/getTodoByCategory/:category').get(function(req, res) {
     });
 });
 
-todoRoutes.route('/getTodoByCategory/:status').get(function(req, res) {
+todoRoutes.route('/getTodoByStatus/:status').get(function(req, res) {
     let status = req.params.status;
     Todo.find({ status: status}, function(err, todo) {
         res.json(todo);
