@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
-const PORT =  process.env.PORT || 3000;
+const PORT =  process.env.PORT || 8000;
 
 
 let Todo = require('./todo.model');
@@ -40,6 +40,22 @@ todoRoutes.route('/getTodoByCategory/:category').get(function(req, res) {
     let category = req.params.category;
     Todo.find({ category: category}, function(err, todo) {
         res.json(todo);
+    });
+});
+
+todoRoutes.route('/getTodoByCategory/:status').get(function(req, res) {
+    let status = req.params.status;
+    Todo.find({ status: status}, function(err, todo) {
+        res.json(todo);
+    });
+});
+
+
+todoRoutes.route('/getAllCategory').get(function(req, res){
+    
+    Todo.find({}, {category:1, _id:0},function(err, todo){
+        res.json(todo);
+        console.log(todo);
     });
 });
 
